@@ -1,0 +1,15 @@
+model:
+  name: SVM
+  random_state: 12
+
+  training:
+    test_size: 0.3
+    stratify: y
+
+  scaler:
+    type: standard
+
+  hyperparameters:
+    kernel: linear
+    class_weight: None
+    C: 87.48635893714844

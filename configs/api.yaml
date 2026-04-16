@@ -1,0 +1,7 @@
+api:
+  host: 0.0.0.0
+  port: 5000
+
+defaults:
+  rating_interno_score: 1
+  historico_atrasos_12m: 0
