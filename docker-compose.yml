@@ -17,7 +17,7 @@ services:
   trainer:
     build: .
     container_name: trainer
-    command: python main.py --version v1
+    command: python main.py --version v2
     volumes:
       - ./logs:/app/logs
       - ./models:/app/models
