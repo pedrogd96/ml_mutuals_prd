@@ -31,9 +31,18 @@ def predict(data, version="v1"):
     if hasattr(model, "predict_proba"):
         prediction_proba = model.predict_proba(data).tolist()
 
+    results = []
+
+    for i in range(len(prediction)):
+        result = {
+            "prediction": int(prediction[i])
+        }
+
+        if prediction_proba is not None:
+            result["probability"] = prediction_proba[i]
+
+        results.append(result)
+
     logger.info(f"Modelo versão {version} gerou prediction {prediction} e probability {prediction_proba} para os dados {data}")
 
-    return {
-        "prediction": prediction,
-        "probability": prediction_proba
-    }
+    return results

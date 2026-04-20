@@ -10,7 +10,7 @@ def create_pipeline(config: dict):
     if scalerCfg["type"] == "standard":
         scaler = StandardScaler()
     else:
-        scaler = None  # ou levanta erro
+        scaler = None
 
     steps = []
 

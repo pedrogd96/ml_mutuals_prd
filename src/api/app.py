@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from src.features.preprocess import preprocess_input
 from src.models.predict import predict
+from src.validations.validation import validate_input
 from src.utils.config_loader import load_config
 from src.utils.logger import setup_logger
 
@@ -23,8 +24,16 @@ def predict_endpoint():
             logger.error(f"Não foi passado os dados por parâmetro para a versão {version}")
             return jsonify({"error": "Campo 'data' é obrigatório"}), 400
 
+        validation = validate_input(input_data, version)
+
+        if not validation["valid"]:
+            return jsonify({
+                "error": "Erro de validação",
+                "details": validation["errors"]
+            }), 400
+
         # Pré-processamento
-        processed_data = preprocess_input(input_data)
+        processed_data = preprocess_input(input_data, version)
 
         # Predição
         result = predict(processed_data, version)

@@ -4,12 +4,12 @@ model:
 
   training:
     test_size: 0.3
-    stratify: y
+    stratify: true
 
   scaler:
     type: standard
 
   hyperparameters:
     kernel: linear
-    class_weight: None
+    class_weight: null
     C: 87.48635893714844

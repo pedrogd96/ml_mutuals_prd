@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
 
   app:
@@ -33,9 +31,11 @@ services:
     container_name: mlflow
     ports:
       - "5001:5000"
+    environment:
+      - MLFLOW_SERVER_ALLOWED_HOSTS=*
     command: >
       mlflow server
-      --backend-store-uri sqlite:///mlflow.db
+      --backend-store-uri sqlite:////mlflow/mlflow.db
       --default-artifact-root /mlflow/artifacts
       --host 0.0.0.0
     volumes:
